@@ -23,14 +23,14 @@ def home():
     query = request.args.get('q')
     location=request.args.get('l')
     op = webdriver.ChromeOptions()
-    #op.binary_location="/app/.apt/usr/bin/google-chrome"  executable_path="/app/.chromedriver/bin/chromedriver",
-    """op.add_argument('--headless')
+    op.binary_location="/app/.apt/usr/bin/google-chrome"  
+    op.add_argument('--headless')
     op.add_argument('--disable-gpu')
     op.add_argument('--no-sandbox')
     op.add_argument('--disable-dev-shm-usage')
-    op.add_argument('--remote-debugging-port=9222')"""
+    op.add_argument('--remote-debugging-port=9222')
     print(urllib.parse.quote(query))
-    driver=webdriver.Chrome(options=op)
+    driver=webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver",options=op)
     try:
         driver.set_page_load_timeout(5)
         driver.get("https://www.google.com/localservices/prolist?g2lbs=AGgkzMy4oY4otlYACabgYCnMb_Bhi0K-SXnTNHTpp7xOyblgDn-Ww4ApC_1XVdSCw0F3BIXdV93jN1W0mh3uxImDy-PmUsWbtw%3D%3D&hl=en-US&gl=us&ssta=1&oq=licensed%20contractors%20in%20texas&src=2&origin=https%3A%2F%2Fwww.google.com&sa=X&q="+urllib.parse.quote(query+" "+location))
